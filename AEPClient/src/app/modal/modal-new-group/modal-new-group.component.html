@@ -1,0 +1,22 @@
+
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">
+             Group Create
+        </h4>
+        <button type="button" class="close pull-right" (click)="hideConfirmationModal()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+
+      <span style="color:red">*</span>Group Name:
+      <input type="text" [(ngModel)]="groupName"  [ngModelOptions]="{standalone:true}"  pInputText pKeyFilter="alphanum" placeholder="Please Fill in Group Name" >
+
+      <button pButton type="button" icon="pi pi-check" [disabled]="!groupName" class="ui-button-success" iconPos="right" label="Click" (click)="click()"></button>
+
+    </div>
+    <div class="modal-footer">
+
+    </div>
+

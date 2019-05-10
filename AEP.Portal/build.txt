@@ -1,0 +1,6 @@
+ng build 
+npm cache clean
+https://www.iis.net/downloads/microsoft/url-rewrite
+
+ng build
+ng build --prod --c=production --aot --base-href

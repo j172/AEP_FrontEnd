@@ -1,0 +1,23 @@
+
+  <div class="modal-header">
+      <h4 class="modal-title pull-left">
+           Folder Create
+      </h4>
+      <button type="button" class="close pull-right" (click)="hideConfirmationModal()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+
+
+    Folder name
+    <input type="text" [(ngModel)]="foldername"  [ngModelOptions]="{standalone:true}"  pInputText pKeyFilter="blockSpecial" placeholder="Please Fill in Folder Name" >
+
+    <button pButton type="button" icon="pi pi-check" class="ui-button-success" iconPos="right" label="Click" (click)="click()"></button>
+
+
+  </div>
+  <div class="modal-footer">
+
+  </div>
+

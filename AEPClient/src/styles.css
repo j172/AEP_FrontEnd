@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+.modal-lg12 {
+  width: 1200px;
+}
+
+.myFolder{
+   color:#f9c01c;
+}
+
+body .ui-breadcrumb ul li .ui-menuitem-link {
+  color: #333;
+  margin: 0;
+  cursor: text;
+}
+
+.highlightText {
+  background: yellow;
+}

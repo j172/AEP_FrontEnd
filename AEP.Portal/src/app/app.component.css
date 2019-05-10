@@ -1,0 +1,267 @@
+h1 {
+    color: #fff;
+    font-family: MS PGothic, Arial, Microsoft JhengHei, Helvetica, sans-serif;
+    font-size: 400%;
+    font-style: italic;
+  }
+
+
+/*Botton*/
+.button {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 20px 30px;
+  border: 10px solid #0a1f33;
+  border-radius: 15px;
+  background: #202d4263; /*#202d42*/
+  background: -webkit-gradient(linear, left top, left bottom, from(#202d4296), to(#000000));
+  background: -moz-linear-gradient(top, #202d4296, #000000);
+  background: linear-gradient(to bottom, #202d4296, #000000);
+  background-color:rgba(32,45,66,0.6); /* IE6和部分IE7內核的瀏覽器(如QQ瀏覽器)會讀懂，但解析為透明 */
+
+  -webkit-box-shadow: #3f4359 0px 0px 40px 0px;
+  -moz-box-shadow: #3f4359 0px 0px 40px 0px;
+  box-shadow: #3f4359 0px 0px 40px 0px;
+  text-shadow: #0b0f0d 1px 1px 1px;
+  font: normal normal bold 30px arial;
+  font-family: Microsoft JhengHei;
+  color: #ffffff;
+  text-decoration: none;
+}
+.button:hover,
+.button:focus {
+  border: 10px solid #194e80;
+  /* background: #26364f; 
+  background: -webkit-gradient(linear, left top, left bottom, from(#26364f), to(#000000));
+  background: -moz-linear-gradient(top, #26364f, #000000);
+  background: linear-gradient(to bottom, #26364f, #000000);*/
+  background: #0d4d7a6e;
+  background: -webkit-gradient(linear, left top, left bottom, from(#48669690), to(#26364f));
+  background: -moz-linear-gradient(top, #425c8690, #26364f);
+  background: linear-gradient(to bottom, #425c8690, #26364f);
+  background-color:rgba(72,102,150,0.6); /* IE6和部分IE7內核的瀏覽器(如QQ瀏覽器)會讀懂，但解析為透明 */
+  color: #FFC300;
+  text-decoration: none;
+}
+.button:active {
+  background: #4a6796;
+  background: -webkit-gradient(linear, left top, left bottom, from(#4a6796), to(#26364f));
+  background: -moz-linear-gradient(top, #4a6796, #26364f);
+  background: linear-gradient(to bottom, #4a6796, #26364f);
+}
+
+
+/*============ tooltip ============*/
+.tooltip {
+  position: relative;
+  display: inline-block;
+  /*border-bottom: 1px dotted black;*/
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 280px;
+  /* background-color: black; */
+  color: rgb(213, 243, 255);
+  text-align: center;
+  border-radius: 6px;
+  padding: 15px 0;
+  font-size: 10px; 
+  top: -5px;
+  left: 105%; 
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+.button_AEP {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 20px 30px;
+  border: 10px solid #42240a;
+  border-radius: 15px;
+  background: #000000;
+  background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#000000));
+  background: -moz-linear-gradient(top, #000000, #000000);
+  background: linear-gradient(to bottom, #000000, #000000);
+  -webkit-box-shadow: #963500 0px 0px 40px 0px;
+  -moz-box-shadow: #963500 0px 0px 40px 0px;
+  box-shadow: #963500 0px 0px 40px 0px;
+  text-shadow: #000000 1px 1px 1px;
+  font: normal normal bold 30px arial;
+  color: #ffcc99;
+  text-decoration: none;
+}
+.button_AEP:hover,
+.button_AEP:active,
+.button_AEP:focus {
+  border: 10px solid #a55a19;
+  color: #ffcc99;
+  text-decoration: none;
+}
+
+.button_TQCDS {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 20px 30px;
+  border: 10px solid #7a797a;
+  border-radius: 15px;
+  background: #000000;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#707070));
+  background: -moz-linear-gradient(top, #ffffff, #707070);
+  background: linear-gradient(to bottom, #ffffff, #707070);
+  -webkit-box-shadow: #2d252e 0px 0px 40px 0px;
+  -moz-box-shadow: #2d252e 0px 0px 40px 0px;
+  box-shadow: #2d252e 0px 0px 40px 0px;
+  text-shadow: #8a8a8a 1px 1px 1px;
+  font: normal normal bold 30px arial;
+  color: #754475;
+  text-decoration: none;
+}
+.button_TQCDS:hover,
+.button_TQCDS:focus {
+  border: 10px solid #9f9d9f;
+  background: #ffffff;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#868686));
+  background: -moz-linear-gradient(top, #ffffff, #868686);
+  background: linear-gradient(to bottom, #ffffff, #868686);
+  color: #754475;
+  text-decoration: none;
+}
+.button_TQCDS:active {
+  background: #999999;
+  background: -webkit-gradient(linear, left top, left bottom, from(#999999), to(#707070));
+  background: -moz-linear-gradient(top, #999999, #707070);
+  background: linear-gradient(to bottom, #999999, #707070);
+}
+
+.button_TBD_G {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 20px 30px;
+  border: 10px solid #38520b;
+  border-radius: 15px;
+  background: #85ba1c;
+  background: -webkit-gradient(linear, left top, left bottom, from(#85ba1c), to(#1f2e04));
+  background: -moz-linear-gradient(top, #85ba1c, #1f2e04);
+  background: linear-gradient(to bottom, #85ba1c, #1f2e04);
+  -webkit-box-shadow: #5c8410 0px 0px 40px 0px;
+  -moz-box-shadow: #5c8410 0px 0px 40px 0px;
+  box-shadow: #5c8410 0px 0px 40px 0px;
+  text-shadow: #182304 1px 1px 1px;
+  font: normal normal bold 30px arial;
+  color: #b1e177;
+  text-decoration: none;
+}
+.button_TBD_G:hover,
+.button_TBD_G:focus {
+  border: 10px solid #5a8312;
+  background: #a0df22;
+  background: -webkit-gradient(linear, left top, left bottom, from(#a0df22), to(#253705));
+  background: -moz-linear-gradient(top, #a0df22, #253705);
+  background: linear-gradient(to bottom, #a0df22, #253705);
+  color: #b1e177;
+  text-decoration: none;
+}
+.button_TBD_G:active {
+  background: #507011;
+  background: -webkit-gradient(linear, left top, left bottom, from(#507011), to(#1f2e04));
+  background: -moz-linear-gradient(top, #507011, #1f2e04);
+  background: linear-gradient(to bottom, #507011, #1f2e04);
+}
+
+.button_TBD_P {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 20px 30px;
+  border: 10px solid #d64968;
+  border-radius: 15px;
+  background: #fa496f; 
+  background: -webkit-gradient(linear, left top, left bottom, from(#fa496f), to(#841a2f));
+  background: -moz-linear-gradient(top, #fa496f, #841a2f);
+  background: linear-gradient(to bottom, #fa496f, #841a2f);
+  -webkit-box-shadow: #fa9ad2 0px 0px 40px 0px;
+  -moz-box-shadow: #fa9ad2 0px 0px 40px 0px;
+  box-shadow: #fa9ad2 0px 0px 40px 0px;
+  text-shadow: #4e0f1c 1px 1px 1px;
+  font: normal normal bold 30px arial;
+  color: #fa9ad2;
+  text-decoration: none;
+}
+.button_TBD_P:hover,
+.button_TBD_P:focus {
+  border: 10px solid #ff5f87;
+  background: #ff5885;
+  background: -webkit-gradient(linear, left top, left bottom, from(#ff5885), to(#9e1f38));
+  background: -moz-linear-gradient(top, #ff5885, #9e1f38);
+  background: linear-gradient(to bottom, #ff5885, #9e1f38);
+  color: #fa9ad2;
+  text-decoration: none;
+}
+.button_TBD_P:active {
+  background: #962c43;
+  background: -webkit-gradient(linear, left top, left bottom, from(#962c43), to(#841a2f));
+  background: -moz-linear-gradient(top, #962c43, #841a2f);
+  background: linear-gradient(to bottom, #962c43, #841a2f);
+}
+
+.button_TBD_B {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  padding: 20px 30px;
+  border: 10px solid #4b7694;
+  border-radius: 15px;
+  background: #2d668e; 
+  background: -webkit-gradient(linear, left top, left bottom, from(#2d668e), to(#18364c));
+  background: -moz-linear-gradient(top, #2d668e, #18364c);
+  background: linear-gradient(to bottom, #2d668e, #18364c);
+  -webkit-box-shadow: #367aaa 0px 0px 40px 0px;
+  -moz-box-shadow: #367aaa 0px 0px 40px 0px;
+  box-shadow: #367aaa 0px 0px 40px 0px;
+  text-shadow: #0e202d 1px 1px 1px;
+  font: normal normal bold 30px arial;
+  color: #78acf5;
+  text-decoration: none;
+}
+.button_TBD_B:hover,
+.button_TBD_B:focus {
+  border: 10px solid #6299c0;
+  background: #367aaa;
+  background: -webkit-gradient(linear, left top, left bottom, from(#367aaa), to(#1d415b));
+  background: -moz-linear-gradient(top, #367aaa, #1d415b);
+  background: linear-gradient(to bottom, #367aaa, #1d415b);
+  color: #78acf5;
+  text-decoration: none;
+}
+.button_TBD_B:active {
+  background: #18364c;
+  background: -webkit-gradient(linear, left top, left bottom, from(#18364c), to(#18364c));
+  background: -moz-linear-gradient(top, #18364c, #18364c);
+  background: linear-gradient(to bottom, #18364c, #18364c);
+} */

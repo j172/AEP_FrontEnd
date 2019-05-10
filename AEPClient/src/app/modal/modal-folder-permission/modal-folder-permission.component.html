@@ -1,0 +1,151 @@
+<form (ngSubmit)="onConfirm()">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">
+      Folder Authorization Setting
+    </h4>
+    <button type="button" class="close pull-right" (click)="hideConfirmationModal()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="content-section implementation">
+      <p-panel>
+        <p-header>
+          <div class="ui-helper-clearfix">
+            <div class="col-md-8">
+              <button type="button" class="btn btn-primary" [disabled]="!lstFolderAuth" (click)="saveFolderAuth()"><span><i
+                    class="fas fa-save"></i>
+                  Save</span></button>
+            </div>
+            <div class="col-md-4">
+              <div style="text-align: right">
+                <p-checkbox [ngModelOptions]="{standalone:true}" [(ngModel)]="myFolderAuthMain.IsAuthInherit"
+                  (onChange)="GetParentAuth()" label="繼承父階權限" binary="true"></p-checkbox>
+              </div>
+            </div>
+          </div>
+
+        </p-header>
+
+        <p-table #dt [value]="lstFolderAuth" [paginator]="true" [rows]="10" [globalFilterFields]="['UserAD']">
+          <ng-template pTemplate="caption">
+            <div class="row">
+              <div class="col-md-8" style="text-align: left">
+                <!-- <input type="hidden" name="someData" [ngModel]="folderID" value="{{folderID}}" />{{folderID}} -->
+                <label>Folder Name:</label>
+                <input type="text" pInputText size="50" placeholder="Folder Name" [(ngModel)]="folderName"
+                  [ngModelOptions]="{standalone:true}" value="{{folderName}}" [disabled]="true">
+              </div>
+              <div class="col-md-4" style="text-align: right">
+                <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                <input type="text" pInputText size="25" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')">                
+              </div>
+            </div>
+            <div class="row">
+              <span *ngIf="(folderID && !myFolderAuthMain.IsAuthInherit) || (folderID == 0)"> {{checked}}
+                <!-- <span>    -->
+                <div class="col-md-7" style="text-align: left">
+                  <button class="btn btn-default" (click)="addFolderUser()"><i class="fas fa-user-plus"></i>
+                    Add</button>
+                  <button class="btn btn-default" (click)="addFolderGroup()"><i class="fas fa-users-cog"></i>
+                    Add</button>
+                  <button class="btn btn-default" (click)="showUpload()"><i class="fas fa-file-upload"></i>
+                    Upload</button>
+                </div>
+              </span>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th> </th>
+              <th><B> Name </B></th>
+              <th><B> Authorization </B></th>
+              <th><B> Action </B></th>
+            </tr>                 
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData>
+            <tr>
+
+              <td *ngIf="rowData['AuthType']==1" class="col-md-6">
+                <i class="fas fa-user fa-lg" aria-hidden="true"></i>
+              </td>
+              <td *ngIf="rowData['AuthType']==2" class="col-md-6">
+                <i class="fas fa-users fa-lg" aria-hidden="true"></i>
+              </td>
+
+
+              <td *ngIf="rowData['AuthType']==1" class="col-md-6">
+                {{rowData['UserAD']}}
+              </td>
+              <td *ngIf="rowData['AuthType']==2" class="col-md-6">
+                <a href='#' (click)="getGroupMember(rowData['GroupID'])" data-toggle="modal" data-target="#groupModal">{{rowData['GroupName']}} </a>
+              </td>
+              <td class="col-md-4">
+                <span *ngIf="rowData['FolderAuth']==1">Read</span>
+                <span *ngIf="rowData['FolderAuth']==2">Read/Write</span>
+                <span *ngIf="rowData['FolderAuth']==3">Read/Write/Delete</span>
+              </td>
+              <td class="col-md-2">
+                <span *ngIf="rowData && !myFolderAuthMain.IsAuthInherit">
+                  <button class="btn btn-danger" (click)="showConfirm(rowData['AuthType'],rowData['UserAD'],rowData['GroupID'])"><i
+                      class="fas fa-times"></i>
+                    Delete</button>
+                </span>
+              </td>
+            </tr>
+          </ng-template>
+
+        </p-table>
+      </p-panel>
+    </div>
+
+  </div>
+</form>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="groupModal" tabindex="-1" role="dialog" aria-labelledby="groupModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left" id="groupModalLabel">Group Member</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body container-fluid">
+        <p-table #dt [columns]="cols" [value]="lstGroupUser" [paginator]="true" [rows]="10"
+          [resizableColumns]="true" [scrollable]="true" class="table table-bordered table-striped">
+
+          <ng-template pTemplate="colgroup" let-columns>
+            <colgroup>
+              <col style="width:180px">
+            </colgroup>
+          </ng-template>
+
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th pResizableColumn *ngFor="let col of columns">
+                <B>{{col.header}}</B>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+
+              <td class="ui-resizable-column">{{rowData['UserAD']}}</td>
+
+            </tr>
+          </ng-template>
+
+        </p-table>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>        
+      </div>
+    </div>
+  </div>
+</div>

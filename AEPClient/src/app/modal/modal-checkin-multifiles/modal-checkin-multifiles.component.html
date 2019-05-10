@@ -1,0 +1,66 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">
+    Upload Multi File
+  </h4>
+  <button type="button" class="close pull-right" (click)="hideConfirmationModal()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <div class="row">
+    <div class="col-md-12">
+      Folder: <span *ngIf="selectedFolder">{{selectedFolder.data.physicalPath }}</span>
+    </div>
+  </div>
+
+
+  <p-fileUpload name="myFile[]" [showUploadButton]="false" [showCancelButton]="false" maxFileSize="50000000"
+    customUpload="true" multiple="multiple" auto="auto" (onSelect)="onUpload($event)">
+
+
+    <ng-template pTemplate="toolbar">
+      <div>Upload {{arrReturnUploadFile.length}} Files</div>
+    </ng-template>
+    <ng-template let-file pTemplate="file">
+      <div> </div>
+    </ng-template>
+
+
+    <ng-template pTemplate="content">
+      <div>
+
+        <table class="table">
+          <tr *ngFor="let item of arrReturnUploadFile">
+            <td>{{item.FileName}}</td>
+            <td *ngIf="item.IsOK===true"> <i class="fas fa-check"></i></td>
+            <td *ngIf="item.IsOK===false"> <i class="fas fa-times"></i></td>
+            <td *ngIf="item.IsOK===null"> <i class="fas fa-ellipsis-h"></i> </td>
+            <td>{{item.message}}</td>
+          </tr>
+        </table>
+      </div>
+    </ng-template>
+
+  </p-fileUpload>
+
+  <div class="row">
+    <div class="col-md-12">
+      Check-In comments:
+      <input type="text" pInputText [(ngModel)]="memo" size="30" class="ng-dirty ng-invalid">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p-checkbox [(ngModel)]="checked" binary="true" label="Send Notication Mail to Folder Members"></p-checkbox>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p-button icon="pi pi-check" label="Check In" (click)="myUploaderMulti()" [disabled]="!arrReturnUploadFile || getMemoLength() || getFileError()"></p-button>
+      <p-button icon="fas fa-times" label="Close" (click)="close()"></p-button>
+    </div>
+  </div>
+
+</div>
+<div class="modal-footer">

@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* For HTML background image*/
+body {
+    background-size: cover;
+    background-image: url("images/car_1920.jpg");
+    width: auto;
+    height: auto;
+    font-family: Microsoft JhengHei, Arial, Helvetica, sans-serif;
+    /* background-position: 50% 50%; */
+}

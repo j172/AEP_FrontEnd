@@ -1,0 +1,117 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">
+    File Information
+  </h4>
+  <button type="button" class="close pull-right" (click)="hideConfirmationModal()" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <!-- <div *ngIf="selectedFile"> -->
+  <table class="table table-bordered table-striped" *ngIf="selectedFile">
+    <tr>
+      <th><B>File Name</B></th>
+      <td colspan="3">{{selectedFile.name}}</td>
+    </tr>
+    <tr>
+      <th><B>Version</B></th>
+      <td>{{selectedFile.version}}</td>
+      <th><B>Status</B></th>
+      <td>
+        <span *ngIf="selectedFile.status==1">Check-In</span>
+        <span *ngIf="selectedFile.status==2">Check-Out</span>
+        <span *ngIf="selectedFile.status==3">Deleted</span>
+      </td>
+    </tr>
+    <tr>
+      <th><B>Check-In By</B></th>
+      <td>{{selectedFile.checkInBy}}</td>
+      <th><B>Check-In Time</B></th>
+      <td>
+        <span *ngIf="selectedFile.status==1">{{selectedFile.updateDateTime | date:'yyyy/MM/dd hh:mm:ss'}}</span>
+      </td>
+    </tr>
+    <tr>
+        <th><B>Comments</B></th>
+        <td colspan="3">{{selectedFile.comments}}</td>
+    </tr>
+    <tr>
+      <th><B>Check-Out By</B></th>
+      <td>{{selectedFile.checkOutBy}}</td>
+      <th><B>Check-Out Time</B></th>
+      <td><span *ngIf="selectedFile.status==2">{{selectedFile.updateDateTime | date:'yyyy/MM/dd hh:mm:ss'}}</span></td>
+    </tr>
+    <tr>
+      <th><B>Delete By</B></th>
+      <td>{{selectedFile.deleteBy}}</td>
+      <th><B>Delete Time</B></th>
+      <td>{{selectedFile.deleteDateTime | date:'yyyy/MM/dd hh:mm:ss'}}</td>
+    </tr>
+  </table>
+
+
+    <!-- <div class="row">
+      <div class="col-md-2"><B>File Name</B></div>
+      <div class="col-md-10">{{selectedFile.name}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2"><B>Version</B></div>
+      <div class="col-md-2">{{selectedFile.version}}</div>
+      <div class="col-md-2"><B>Status</B></div>
+      <div class="col-md-2">{{selectedFile.status}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2"><B>Check-In By</B></div>
+      <div class="col-md-4">{{selectedFile.checkInBy}}</div>
+      <div class="col-md-2"><B>Check-In Time</B></div>
+      <div class="col-md-4">{{selectedFile.updateDateTime}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2"><B>Check-Out By</B></div>
+      <div class="col-md-4">{{selectedFile.checkOutBy}}</div>
+      <div class="col-md-2"><B>Check-Out Time</B></div>
+      <div class="col-md-4">{{selectedFile.updateDateTime}}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2"><B>Delete By</B></div>
+      <div class="col-md-4">{{selectedFile.deleteBy}}</div>
+      <div class="col-md-2"><B>Delete Time</B></div>
+      <div class="col-md-4">{{selectedFile.deleteDateTime}}</div>
+    </div> -->
+
+    <!-- </div> -->
+
+    <!--
+  <table class="table table-bordered table-striped" *ngIf="selectedFile">
+      <tr>
+        <th><B>File Name</B></th>
+        <th><B>Check-In By</B></th>
+        <th><B>Check-In Time</B></th>
+        <th><B>Status</B></th>
+        <th><B>Check-Out By</B></th>
+        <th><B>Check-Out Time</B></th>
+        <th><B>Version</B></th>
+        <th><B>Delete By</B></th>
+        <th><B>Delete Time</B></th>
+      </tr>
+
+      <tr>
+        <td>{{selectedFile.name}}</td>
+        <td>{{selectedFile.checkInBy}}</td>
+        <td>{{selectedFile.updateDateTime}}</td>
+        <td>{{selectedFile.status}}</td>
+        <td>{{selectedFile.checkOutBy}}</td>
+        <td>{{selectedFile.updateDateTime}}</td>
+        <td>{{selectedFile.version}}</td>
+        <td>{{selectedFile.deleteBy}}</td>
+        <td>{{selectedFile.deleteDateTime}}</td>
+      </tr>
+
+
+  </table> -->
+
+</div>
+
+<div class="modal-footer">
+
+</div>

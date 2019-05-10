@@ -1,0 +1,70 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">
+        Upload Single File
+    </h4>
+    <button type="button" class="close pull-right" (click)="hideConfirmationModal()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+
+    <div class="row">
+        <div class="col-md-12">
+            FileName: <span *ngIf="selectedFile">{{selectedFile.name}}</span>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            Upload File:
+            <p-fileUpload customUpload="true" [showUploadButton]="false" mode="advanced" name="demo[]" maxFileSize="50000000"
+                (onError)="onError($event)" (onSelect)="onUpload($event)">
+            </p-fileUpload>
+
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            Check-In comments:
+
+            <input type="text" pInputText [(ngModel)]="memo" size="30" class="ng-dirty ng-invalid">
+
+
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p-checkbox [(ngModel)]="checked" binary="true" label="Send Notication Mail to Folder Members"></p-checkbox>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p-button icon="pi pi-check" label="Check In" (click)="myUploader()" [disabled]="!fileToUpload || getMemoLength() || getCheckFileName()"></p-button>
+            <p-button icon="fas fa-times" label="Close" (click)="close()"></p-button>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<div class="modal-footer">
+
+    <p-message *ngIf="!fileToUpload" severity="error" text="File is required"></p-message>
+    <p-message *ngIf="getMemoLength()" severity="error" text="Check-In comments is required"></p-message>
+    <p-message *ngIf="getCheckFileName()" severity="error" text="Filename not equal"></p-message>
+
+
+</div>

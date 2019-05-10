@@ -1,0 +1,23 @@
+
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">
+            Modify Folder
+        </h4>
+        <button type="button" class="close pull-right" (click)="hideConfirmationModal()"  aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+
+      <span style="color:red">*</span>Folder Name:
+      <!-- <input type="text" [ngModelOptions]="{standalone:true}"  pInputText pKeyFilter="alphanum" placeholder="請輸入資料夾名稱" > -->
+      <input type="text" pInputText size="50" placeholder="Please Fill in Folder Name" [(ngModel)]="folderName"
+                  [ngModelOptions]="{standalone:true}" value="{{folderName}}">
+
+      <button pButton type="button" icon="pi pi-check" [disabled]="!folderName" class="ui-button-success" iconPos="right" label="Click" (click)="click()"></button>
+
+    </div>
+    <div class="modal-footer">
+
+    </div>

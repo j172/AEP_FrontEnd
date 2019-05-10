@@ -1,0 +1,142 @@
+<app-loading></app-loading>
+<p-toast [baseZIndex]="99" [style]="{marginTop: '80px'}" ui-toast-message-text-content></p-toast>
+<p-confirmDialog [baseZIndex]="99"></p-confirmDialog>
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid wrapper col1" [ngStyle]="{'background-color': currentColor, 'color': currentColor}">
+
+        <div class="navbar-header">
+
+            <a class="navbar-brand" href="#" [ngStyle]="{'background-color': currentColor, 'color': 'white'}">
+                <span>
+                    <img alt=" AEP檔案管理系統" src="assets/images/Compal-Logo.png" width="30px" height="30px" style="vertical-align: middle">
+                    <span style="margin:5px;padding-top:0px;letter-spacing:1px; font-family: Arial, Helvetica, sans-serif, Microsoft JhengHei">
+                        <span style="margin:0;padding:0;font-size: 160%;font-weight: bold;">A</span>
+                        <span style="margin:0;padding:0;font-size: 160%;font-weight: bold;">E</span>
+                        <span style="margin:0;padding:0;font-size: 160%;font-weight: bold;">P</span>&nbsp;
+                        <span style="margin:0;padding:0;font-size: 150%;font-weight: bold;">G</span>
+                        <span style="margin:0;padding:0;font-size: 90%;">lobal</span>&nbsp;
+                        <span style="margin:0;padding:0;font-size: 150%;font-weight: bold;">D</span>
+                        <span style="margin:0;padding:0;font-size: 90%;">ata</span>&nbsp;
+                        <span style="margin:0;padding:0;font-size: 150%;font-weight: bold;">M</span> 
+                        <span style="margin:0;padding:0;font-size: 90%;">anagement</span>&nbsp;
+                        <span style="margin:0;padding:0;font-size: 150%;font-weight: bold;">S</span> 
+                        <span style="margin:0;padding:0;font-size: 90%;">ystem</span>&nbsp;
+                    </span>
+                    <img alt=" AEP File System" src="assets/images/CAR_burned.png" width="120px" style="vertical-align:top">
+                </span>
+            </a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
+                <span class="sr-only">Switch navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>
+
+        <div class="collapse navbar-collapse navbar-responsive-collapse navbar-right" style="vertical-align: bottom">
+            <ul class="nav navbar-nav">
+                <li class="dropdown" *ngIf="IsAdmin">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" [ngStyle]="{'background-color': currentColor, 'color': 'white'}">
+                        <i class="fas fa-bars"></i></a>
+                    <ul class="dropdown-menu" [ngStyle]="{'background-color': currentColor, 'color': 'white'}">
+                        <li><a [routerLink]="['/file']" [ngStyle]="{'background-color': currentColor, 'color': 'white'}">File</a></li>
+                        <li><a [routerLink]="['/group']" [ngStyle]="{'background-color': currentColor, 'color': 'white'}">Group</a></li>
+                        <li><a href="#" (click)="downloadLog()" [ngStyle]="{'background-color': currentColor, 'color': 'white'}">Download log</a></li>
+                        <!-- <li><input type="button" value="Download log" (click)="downloadLog()"></li> -->
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" [ngStyle]="{'background-color': currentColor, 'color': 'white'}">
+                        <!--<i class="fas fa-palette"></i> &nbsp;
+                         <i class="fas fa-tint"></i>&nbsp; -->
+                        <i class="fas fa-fill-drip"></i>&nbsp;
+                    </a>                    
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-submenu">
+                            <!-- <a href="#">Change banner color</a> -->
+                            <p-colorPicker [(ngModel)]="currentColor" (onChange)="changeColor(currentColor)"></p-colorPicker>Change color
+                            <!-- <ul class="dropdown-menu">
+                                <li>
+                                    <a herf='#' style="color:#D51D29" (click)="changeColor('#D51D29')"><i class="fas fa-square"></i>
+                                        Red</a>
+                                </li>
+                                <li>
+                                    <a herf='#' style="color:#111" (click)="changeColor('#111')"><i class="fas fa-square"></i>
+                                        Black</a>
+                                </li>
+                                <li>
+                                    <a herf='#' style="color:#FFDC00" (click)="changeColor('#FFDC00')"><i class="fas fa-square">
+                                            Yellow</i></a>
+                                </li>
+                                <li>
+                                    <a herf='#' style="color:#2ECC40" (click)="changeColor('#2ECC40')"><i class="fas fa-square"></i>
+                                        Green</a>
+                                </li>
+                                <li>
+                                    <a herf='#' style="background-color:#eee; color:#124f76" ng-model="myColor" (click)="changeColor('#124f76')"><i
+                                            class="fas fa-square"></i>
+                                        Default(Blue)</a>
+                                </li>
+                            </ul> -->
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" data-toggle="dropdown" class="dropdown-toggle" [ngStyle]="{'background-color': currentColor, 'color': 'white'}">{{ADName}} 
+                        <!-- <i class="fas fa-caret-down"></i> -->
+                    </a>
+
+                    <!-- <ul class="dropdown-menu"  [ngStyle]="{'background-color': currentColor, 'color': 'white'}">                        
+                        <li><a [ngStyle]="{'background-color': currentColor, 'color': 'white'}" (click)="myCheckOutList()"><span class="fas fa-clipboard-check" style="color:white;"></span> &nbsp; My Check-out list </a></li>
+                        <li><a [ngStyle]="{'background-color': currentColor, 'color': 'white'}" (click)="myAlertMeList()"><span class="far fa-bell" style="color:white;"></span> &nbsp; My Alert-me list</a></li>
+                    </ul> -->
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+
+
+<!-- 
+<li><a href='#'><span style="color: #D51D29"><i class="fas fa-square"></i></span> Red</a></li>
+<li><a href='#'><span style="color: #124f76"><i class="fas fa-square"></i></span></a> Blue</li>
+<li><a href='#'><span style="color: #111"><i class="fas fa-square"></i></span></a> Black</li>
+<li><a href='#'><span style="color: #FFDC00"><i class="fas fa-square"></i></span></a> Yellow</li>
+<li><a href='#'><span style="color: #2ECC40"><i class="fas fa-square"></i></span></a> Green</li>
+<li><a href='#'><span style="color: #85144b"><i class="fas fa-square"></i></span></a> Maroon</li>
+-->
+
+
+<div *ngIf="IsAuth" style="background:#222222">
+    <router-outlet></router-outlet>
+</div>
+
+
+<div *ngIf="!IsAuth" style="margin-top:100px; text-align: center">
+
+    <!-- <h2 style="color: red"><i class="fas fa-times-circle"></i> 您沒有使用的權限</h2> -->
+    <div id="notfound">
+        <div class="notfound">
+            <div class="notfound-404">
+                <div></div>
+                <h1>401</h1>
+            </div>
+            <h3 style="color: red">Unauthorized</h3>
+            <p>您沒有使用的權限, 請跟系統管理員申請使用，謝謝!</p>
+            <p>The page you are has not been applied because it lacks valid authentication credentials. <br />
+                Please call the system admin, thank you.</p>
+            <p>管理員/System Admin：Jessie_Yu, 余佳穗(#15347)；Norman_Lee, 李振榮(#15330/#615330)</p>
+            <br/>
+            <a href="#">home page</a>
+        </div>
+    </div>
+
+</div>
+
+<!-- 
+<router-outlet></router-outlet> -->

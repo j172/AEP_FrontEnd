@@ -1,0 +1,116 @@
+<form (ngSubmit)="onConfirm()">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">
+            Group Select
+        </h4>
+        <button type="button" class="close pull-right" (click)="hideConfirmationModal()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+
+        <p-radioButton name="groupAuthValue" value="1" [(ngModel)]="selectedValue" label="Read"></p-radioButton>
+        <p-radioButton name="groupAuthValue" value="2" [(ngModel)]="selectedValue" label="Read/Write"></p-radioButton>
+        <p-radioButton name="groupAuthValue" value="3" [(ngModel)]="selectedValue" label="Read/Write/Delete"></p-radioButton>
+        <button [disabled]="!selectedGroups" pButton type="button" icon="pi pi-check" class="ui-button-success" iconPos="right"
+            label="Click" (click)="click()"></button>
+
+        <input type="text" [formControl]="searchField" class="form-control" placeholder="Filter Description">
+
+        <p-table #dt [columns]="cols" [value]="grouplist" [resizableColumns]="true" [scrollable]="true" [paginator]="true"
+            [rows]="10" selectionMode="multiple" [(selection)]="selectedGroups" (onRowSelect)="onRowSelect($event)"
+            (onRowUnselect)="onRowUnselect($event)" dataKey="GroupName">
+            <!-- <ng-template pTemplate="caption">
+      </ng-template> -->
+            <ng-template pTemplate="colgroup" let-columns>
+                <colgroup>
+                    <col style="width:50px">
+                    <col style="width:250px">
+                </colgroup>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th pResizableColumn *ngFor="let col of columns">
+                        <B>{{col.header}}</B>
+                    </th>
+                </tr>
+            </ng-template>
+            <!-- <ng-template pTemplate="body" let-rowData>
+                <tr>
+                    <td>{{rowData['GroupID']}}</td>
+                    <td>
+                        <a href='#' (click)="getGroupMember(rowData['GroupID'])" data-toggle="modal" data-target="#groupModal">{{rowData['GroupName']}}
+                        </a>
+                    </td>
+                </tr>
+            </ng-template> -->
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                    <td *ngFor="let col of columns">
+                            {{rowData[col.field]}}
+                        <!-- <a href='#' (click)="getGroupMember(rowData['GroupID'])" data-toggle="modal" data-target="#groupModal">{{rowData[col.field]}}
+                        </a> -->
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+
+    </div>
+    <div class="modal-footer">
+
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<!-- <div class="modal hide fade" id="groupModal" tabindex="-1" data-focus-on="input:first" aria-hidden="true">
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Group Member</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p-table #dt [columns]="gcols" [value]="lstGroupUser" [paginator]="true" [rows]="10" [resizableColumns]="true"
+            [scrollable]="true" class="table table-bordered table-striped">
+
+            <ng-template pTemplate="colgroup" let-columns>
+                <colgroup>
+                    <col style="width:180px">
+                </colgroup>
+            </ng-template>
+
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th pResizableColumn *ngFor="let gcol of columns">
+                        <B>{{gcol.header}}</B>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+
+                    <td class="ui-resizable-column">{{rowData['UserAD']}}</td>
+
+                </tr>
+            </ng-template>
+
+        </p-table>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    </div>
+</div> -->

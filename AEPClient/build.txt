@@ -1,0 +1,327 @@
+ng build --prod --env=prod --aot --base-href /MMSClient/
+npm cache clean
+https://www.iis.net/downloads/microsoft/url-rewrite
+
+ng build
+ng build --prod --env=qas --aot --base-href
+ng build --prod --c=production --aot --base-href
+ng build --prod --c=production  --base-href
+ng build --prod --env=prod --aot --base-href
+
+
+# these are equivalent
+ng build --target=production --environment=prod
+ng build --prod --env=prod
+ng build --prod
+# and so are these
+ng build --target=development --environment=dev
+ng build --dev --e=dev
+ng build --dev
+ng build
+
+
+
+ng serve -aot
+
+npm i jquery --save
+npm i ngx-bootstrap-modal --save
+npm i ngx-progressbar --save
+
+
+Global package:
+
+npm uninstall -g @angular/cli
+npm cache clean
+npm install -g @angular/cli@latest
+Local project package:
+
+rm -rf node_modules dist # use rmdir /S/Q node_modules dist in Windows Command Prompt; use rm -r -fo node_modules,dist in Windows PowerShell
+npm install --save-dev @angular/cli@latest
+npm install
+
+--------------------------------
+
+UID: TPEAEP01\AEPAdmin
+PWD: admin@AEP
+
+
+////////////////////////////////
+--delete from [dbo].[DocRecord];
+--delete from [dbo].[DocRecord_H];
+--delete from [dbo].[DocDownloadLog];
+--delete from [dbo].[DocHDownloadLog];
+--delete from [dbo].[DocAlert];
+--delete from [dbo].[Mail_Log];
+--delete from [dbo].[FolderAuth];
+--delete from [dbo].[FolderNode];
+
+--truncate table [dbo].[DocRecord_H];
+--truncate table [dbo].[DocDownloadLog];
+--truncate table [dbo].[DocHDownloadLog];
+--truncate table [dbo].[DocAlert];
+--truncate table [dbo].[Mail_Log];
+--truncate table [dbo].[FolderAuth];
+--truncate table [dbo].[FolderNode];
+--DBCC CHECKIDENT(FolderNode, RESEED, 0);
+
+
+
+https://l-lin.github.io/angular-datatables/#/getting-started
+npm install jquery --save
+npm install datatables.net --save
+npm install datatables.net-dt --save
+npm install angular-datatables --save
+npm install @types/jquery --save-dev
+npm install @types/datatables.net --save-dev
+
+
+npm install --save jquery
+npm install --save-dev @types/jquery
+npm install --save datatables.net
+npm install --save-dev @types/datatables.net
+
+npm install --save datatables.net-bs
+npm install --save datatables.net-select
+npm install --save datatables.net-select-bs
+npm install --save-dev @types/datatables.net-select
+https://datatables.net/forums/discussion/40281/angular-2-datatables-and-pagination-using-datatables-net-bs
+
+
+
+
+ "styles": [
+        "styles.css",
+         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+         "../node_modules/font-awesome/css/font-awesome.css" ,
+         "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+         "../node_modules/datatables.net-dt/css/jquery.dataTables.css",
+         "../node_modules/datatables.net-buttons-dt/css/buttons.dataTables.css",
+         "../node_modules/datatables.net-colreorder-dt/css/colReorder.dataTables.css",
+         "../node_modules/datatables.net-responsive-dt/css/responsive.dataTables.css",
+         "../node_modules/datatables.net-select-dt/css/select.dataTables.css",
+         "../node_modules/datatables.net-bs/css/dataTables.bootstrap.css",
+         "../node_modules/datatables.net-select-bs/css/select.bootstrap.css"
+      ],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.min.js",
+        "../node_modules/signalr/jquery.signalR.js",
+        "../node_modules/xlsx/dist/xlsx.core.min.js",
+        "../node_modules/xlsx/dist/xlsx.min.js",
+        "../node_modules/datatables.net/js/jquery.dataTables.js",
+        "../node_modules/datatables.net-buttons/js/dataTables.buttons.js",
+        "../node_modules/datatables.net-buttons/js/buttons.colVis.js",
+        "../node_modules/datatables.net-buttons/js/buttons.flash.js",
+        "../node_modules/datatables.net-buttons/js/buttons.html5.js",
+        "../node_modules/datatables.net-buttons/js/buttons.print.js",
+        "../node_modules/datatables.net-colreorder/js/dataTables.colReorder.js",
+        "../node_modules/datatables.net-responsive/js/dataTables.responsive.js",
+        "../node_modules/datatables.net-select/js/dataTables.select.js",
+        "../node_modules/datatables.net-bs/js/dataTables.bootstrap.js"
+
+
+
+      ],
+
+
+
+    <div id="pre-bootstrap-container">
+
+      <!--
+          In this approach, rather than putting the pre-bootstrap content inside
+          the <my-app> component content, we're leaving it external to the Angular 2
+          application entirely. Then, we're hooking into the bootstrap promise in
+          order to programmatically remove the pre-bootstrap content once the
+          application has bootstrapped. This gives us more fine-grained control over
+          how the pre-bootstrap content is removed.
+      -->
+
+      <script type="text/javascript">
+          // CAUTION: "bootstrapping" promise exposed by our System.js logic.
+          window.bootstrapping.then(
+              function handleResolve() {
+                  var preBootstrapContainer = document.getElementById( "pre-bootstrap-container" );
+                  var preBootstrap = document.getElementById( "pre-bootstrap" );
+                  // Add the class-name to initiate the transitions.
+                  preBootstrap.className = "loaded";
+                  // Remove the bootstrap container after the transition has
+                  // completed (based on the known transition time).
+                  setTimeout(
+                      function removeLoadingScreen() {
+                          preBootstrapContainer
+                              .parentNode
+                                  .removeChild( preBootstrapContainer )
+                          ;
+                      },
+                      300
+                  );
+              }
+          );
+      </script>
+
+      <style type="text/css">
+          #pre-bootstrap {
+              background-color: #262626 ;
+              bottom: 0px ;
+              left: 0px ;
+              opacity: 1.0 ;
+              position: fixed ;
+              right: 0px ;
+              top: 0px ;
+              transition: all linear 300ms ;
+                  -webkit-transition: all linear 300ms ;
+              z-index: 999999 ;
+          }
+          #pre-bootstrap.loaded {
+              opacity: 0.0 ;
+          }
+          #pre-bootstrap div.messaging {
+              color: #FFFFFF ;
+              font-family: monospace, "Microsoft JhengHei" ;
+              left: 0px ;
+              margin-top: -37px ;
+              position: absolute ;
+              right: 0px ;
+              text-align: center ;
+              top: 50% ;
+          }
+          #pre-bootstrap h1 {
+              font-size: 26px ;
+              line-height: 35px ;
+              margin: 0px 0px 20px 0px ;
+          }
+          #pre-bootstrap p {
+              font-size: 18px ;
+              line-height: 14px ;
+              margin: 0px 0px 0px 0px ;
+          }
+
+
+/*loader*/
+/* Absolute Center Spinner */
+
+
+.cs-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.cs-loader-inner {
+    transform: translateY(-50%);
+    top: 60%;
+    position: absolute;
+    width: calc(100% - 200px);
+    color: #FFF;
+    padding: 0 100px;
+    text-align: center;
+}
+
+    .cs-loader-inner label {
+        font-size: 20px;
+        opacity: 0;
+        display: inline-block;
+        color: gray;
+    }
+
+@keyframes lol {
+    0% {
+        opacity: 0;
+        transform: translateX(-300px);
+    }
+
+    33% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+
+    66% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(300px);
+    }
+}
+
+@-webkit-keyframes lol {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateX(-300px);
+    }
+
+    33% {
+        opacity: 1;
+        -webkit-transform: translateX(0px);
+    }
+
+    66% {
+        opacity: 1;
+        -webkit-transform: translateX(0px);
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translateX(300px);
+    }
+}
+
+.cs-loader-inner label:nth-child(6) {
+    -webkit-animation: lol 3s infinite ease-in-out;
+    animation: lol 3s infinite ease-in-out;
+}
+
+.cs-loader-inner label:nth-child(5) {
+    -webkit-animation: lol 3s 100ms infinite ease-in-out;
+    animation: lol 3s 100ms infinite ease-in-out;
+}
+
+.cs-loader-inner label:nth-child(4) {
+    -webkit-animation: lol 3s 200ms infinite ease-in-out;
+    animation: lol 3s 200ms infinite ease-in-out;
+}
+
+.cs-loader-inner label:nth-child(3) {
+    -webkit-animation: lol 3s 300ms infinite ease-in-out;
+    animation: lol 3s 300ms infinite ease-in-out;
+}
+
+.cs-loader-inner label:nth-child(2) {
+    -webkit-animation: lol 3s 400ms infinite ease-in-out;
+    animation: lol 3s 400ms infinite ease-in-out;
+}
+
+.cs-loader-inner label:nth-child(1) {
+    -webkit-animation: lol 3s 500ms infinite ease-in-out;
+    animation: lol 3s 500ms infinite ease-in-out;
+}
+      </style>
+
+      <div id="pre-bootstrap">
+          <div class="messaging">
+
+              <h1>
+                  MMS App is Loading
+              </h1>
+              <div class="cs-loader">
+                <div class="cs-loader-inner">
+                    <label>&#9679</label>
+                    <label>&#9679</label>
+                    <label>&#9679</label>
+                    <label>&#9679</label>
+                    <label>&#9679</label>
+                    <label>&#9679</label>
+                </div>
+            </div>
+              <p>
+                  Please waiting for awesome Compal Material Management System  !
+              </p>
+
+          </div>
+      </div>
+
+  </div>

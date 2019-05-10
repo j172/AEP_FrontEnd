@@ -1,0 +1,62 @@
+
+<div class="modal-header">
+    <h4 class="modal-title pull-left">
+      File History
+    </h4>
+    <button type="button" class="close pull-right" (click)="hideConfirmationModal()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <p-table #dt
+      [columns]="cols"
+      [value]="myFiles"
+      [paginator]="true"
+      [rows]="10"
+      [resizableColumns]="true"
+      [scrollable] = "true"
+      class="table table-bordered table-striped" *ngIf="myFiles">
+
+
+      <ng-template pTemplate="colgroup" let-columns>
+        <colgroup>
+          <col style="width:400px">
+          <col style="width:100px">
+          <col style="width:180px">
+          <col style="width:50px">
+          <col style="width:50px">
+        </colgroup>
+      </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th  pResizableColumn *ngFor="let col of columns">
+                    <B>{{col.header}}</B>
+                </th>
+                <th><B>Download</B></th>
+            </tr>
+         </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+
+
+                <td class="ui-resizable-column">{{rowData['name']}}</td>
+                <td class="ui-resizable-column">{{rowData['checkInBy']}}</td>
+                <td class="ui-resizable-column">{{rowData['updateDateTime'] | date:'yyyy/MM/dd hh:mm:ss'}}</td>
+                <td class="ui-resizable-column">{{rowData['version']}}</td>
+                <td  class="ui-resizable-column"><button class="form-control" (click)="downloadFile(rowData['id'],rowData['name'])"><i class="fas fa-download"></i></button></td>
+            </tr>
+        </ng-template>
+
+
+
+
+
+    </p-table>
+
+  </div>
+
+  <div class="modal-footer">
+
+  </div>

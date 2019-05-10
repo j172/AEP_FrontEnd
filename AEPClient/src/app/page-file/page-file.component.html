@@ -1,0 +1,114 @@
+<br /><br /><br />
+<p-breadcrumb [model]="breadcrumbitems"  [style]="{ 'disabled': true , 'color': '#fff', 'background': '#f6f6f7' }"></p-breadcrumb>
+
+<div style="width: 100%; height: 790px; border: 1px solid rgb(5, 5, 5);">
+    <split direction="horizontal">
+
+        <split-area size="20">
+            <p-tree [value]="folderTree" [style]="{'height':'calc(100% - 5px)','width':'1000px','overflow':'auto','border-color':'#22222', 'background': '#222222', 'font-size':'13px'}"
+                selectionMode="single" [(selection)]="selectedFolder" (onNodeContextMenuSelect)="nodeContextMenuSelect($event)"
+                (onNodeSelect)="nodeSelect($event)" [contextMenu]="cm1"></p-tree>
+
+            <p-contextMenu #cm1 [model]="folderContextItems"></p-contextMenu>
+
+        </split-area>
+
+        <split-area size="80">
+            <div class="content-section implementation; ">
+                <p-toast [style]="{marginTop: '80px'}"></p-toast>
+
+
+                <div class="row" style="margin-left:1px;margin-right:10px;">
+                    <h3 *ngIf="selectedFolder.data.auth===0 && selectedFolder.data.isOwner===false  && this.IsAdmin!==true"
+                        style="font-family: Arial, Helvetica, sans-serif, Microsoft JhengHei; color: #ffffff"><i class="fas fa-times-circle"></i>
+                        You do not have permission for this folder</h3>
+
+                    <span *ngIf="(selectedFolder.data.auth>1 || selectedFolder.data.isOwner===true || this.IsAdmin===true ) && selectedFolder.data.isDelete!==true">
+
+                        <button pButton type="button" icon="fas fa-file-alt" label="New File" [disabled]="!selectedFolder"
+                            (click)="newFiles()"></button>
+                        <button pButton type="button" icon="fas fa-folder-plus" label="New Folder" [disabled]="!selectedFolder"
+                            (click)="newFolder()"></button>
+                        <button pButton type="button" icon="fas fa-search" label="Search" [disabled]="!selectedFolder"
+                            (click)="search()"></button>
+
+                    </span>
+
+
+                    <span *ngIf="files" style="margin-top:3px;height:30px; float :right;text-align: right;font-family: Arial, Helvetica, sans-serif, Microsoft JhengHei; color:#ffffff">
+                        <span> Folders: {{getFolderCount()}}  </span>
+                        <span>　||　Files: {{getFileCount()}}  </span>
+                    </span>
+
+                </div>
+                <div class="row" style="margin-left:1px;margin-right:5px;">
+                    <p-table *ngIf="selectedFolder.data.auth > 0  || selectedFolder.data.isOwner===true || this.IsAdmin===true"
+                        [columns]="cols" [value]="files" [resizableColumns]="true" [scrollable]="true"
+                        [(contextMenuSelection)]="selectedFile" (onContextMenuSelect)="tableContextMenuSelect($event)"
+                        [contextMenu]="cm2">
+
+
+                        <ng-template pTemplate="colgroup" let-columns>
+                            <colgroup>
+                                <col style="width:50px">
+                                <col style="width:500px">
+                                <col style="width:150px">
+                                <col style="width:200px">
+                                <col style="width:50px">
+                                <col style="width:150px">
+                            </colgroup>
+                        </ng-template>
+
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th pResizableColumn>Type</th>
+                                <th pResizableColumn>Name</th>
+                                <th pResizableColumn>Owner</th>
+                                <th pResizableColumn>UpdateDateTime</th>
+                                <th pResizableColumn>Ver</th>
+                                <th pResizableColumn>CheckOutBy</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-columns="columns">
+                            <tr [pContextMenuRow]="rowData">
+                                <td class="ui-resizable-column" *ngIf="rowData['isfolder']==true && rowData['isDelete']==false"><i
+                                        class="fas fa-folder fa-lg" aria-hidden="true"></i></td>
+                                <td class="ui-resizable-column" *ngIf="rowData['isfolder']==true && rowData['isDelete']==true"><i
+                                        class="fas fa-folder-minus fa-lg"></i></td>
+
+
+
+                                <td class="ui-resizable-column" *ngIf="rowData['isfolder']!=true && rowData['isDelete']==false"><i
+                                        class="fas fa-file fa-lg" aria-hidden="true"></i></td>
+
+                                <td class="ui-resizable-column" *ngIf="rowData['isfolder']!=true && rowData['isDelete']==true"><i
+                                        class="fas fa-file delete fa-lg" aria-hidden="true"></i></td>
+
+
+                                <!-- <td class="ui-resizable-column" *ngIf="rowData['isfolder']==true" (click)="tableSelectFolder(rowData['id'])"
+                                    style="color:blue">{{rowData['name']}}</td>
+                                <td class="ui-resizable-column" *ngIf="rowData['isfolder']!=true">{{rowData['name']}}</td> -->
+                                <td class="ui-resizable-column" style="color:blue;cursor: pointer;" *ngIf="rowData['isfolder']==true" (click)="tableSelectFolder(rowData['id'])" >{{rowData['name']}}</td>
+                                <td class="ui-resizable-column" style="cursor: default;" *ngIf="rowData['isfolder']!=true">{{rowData['name']}}</td>
+
+
+
+                                <td class="ui-resizable-column" *ngIf="rowData['isfolder']==true">{{rowData['owner']}}</td>
+                                <td class="ui-resizable-column" *ngIf="rowData['isfolder']!=true">{{rowData['checkInBy']}}</td>
+                                <td class="ui-resizable-column">{{rowData['updateDateTime'] | date:'yyyy/MM/dd
+                                    hh:mm:ss' }}</td>
+                                <td class="ui-resizable-column">{{rowData['version']}}</td>
+                                <td class="ui-resizable-column" *ngIf="rowData['status']==2">{{rowData['checkOutBy']}}</td>
+                                <td class="ui-resizable-column" *ngIf="rowData['status']!=2"> </td>
+
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
+                    <p-contextMenu #cm2 [model]="fileviewItems" [hidden]="contextMenu"></p-contextMenu>
+                </div>
+            </div>
+
+        </split-area>
+    </split>
+</div>

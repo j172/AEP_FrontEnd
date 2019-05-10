@@ -1,0 +1,76 @@
+<form (ngSubmit)="onConfirm()">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">
+      Search
+    </h4>
+    <button type="button" class="close pull-right" (click)="hideConfirmationModal()" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <!-- 
+    <button pButton type="button" icon="fas fa-sign-in-alt" class="ui-button-success" iconPos="right" label="Go to"
+      (click)="click()"></button> -->
+
+      <div class="ui-search">
+          <span class="fa fa-search"></span>
+          <!-- <input type="text" pInputText placeholder="Username">          -->
+          <input type="text" [formControl]="searchField" class="form-control" autofocus placeholder="Search Document Name or Folder Name">
+      </div>
+
+    <!-- <input type="text" [formControl]="searchField" class="form-control" placeholder="Search Document Name or Folder Name"> -->
+
+
+    <p-table #dt [columns]="cols" [value]="searchList" [paginator]="true" 
+      [resizableColumns]="true" [scrollable] = "true" [rows]="10" selectionMode="single"
+      [(selection)]="selectedFile" (onRowSelect)="onRowSelect($event)" (onRowUnselect)="onRowUnselect($event)"
+      dataKey="physicalPath">
+      <!-- <ng-template pTemplate="caption">
+         <div style="text-align: right">
+              <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+              <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+          </div> 
+      </ng-template> -->
+      <ng-template pTemplate="colgroup" let-columns>
+          <colgroup>
+            <col style="width:8%">
+            <col style="width:40%">
+            <col style="width:52%">
+          </colgroup>
+        </ng-template>
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th pResizableColumn *ngFor="let col of columns">
+            <b>{{col.header}}</b>
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr [pSelectableRow]="rowData">
+          <td class="ui-resizable-column" *ngIf="rowData['isfolder']==true && rowData['isDelete']==false"><i
+              class="fas fa-folder fa-lg" aria-hidden="true"></i></td>
+          <td class="ui-resizable-column" *ngIf="rowData['isfolder']==true && rowData['isDelete']==true"><i
+              class="fas fa-folder-minus fa-lg"></i></td>
+
+          <td class="ui-resizable-column" *ngIf="rowData['isfolder']!=true && rowData['isDelete']==false"><i
+              class="fas fa-file fa-lg" aria-hidden="true"></i></td>
+          <td class="ui-resizable-column" *ngIf="rowData['isfolder']!=true && rowData['isDelete']==true"><i
+              class="fas fa-file delete fa-lg" aria-hidden="true"></i></td>
+
+          <td class="ui-resizable-column" *ngIf="rowData['name']" [innerHTML]="rowData['name']">{{rowData['name']}}</td>
+          <td class="ui-resizable-column" *ngIf="rowData['physicalPath']" [innerHTML]="rowData['physicalPath']">{{rowData['physicalPath']}}</td>
+          <!-- <td *ngFor="let col of columns">
+            {{rowData[col.field]}}
+          </td> -->
+
+
+        </tr>
+      </ng-template>
+    </p-table>
+
+  </div>
+  <div class="modal-footer">
+
+  </div>
+</form>

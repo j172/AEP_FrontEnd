@@ -1,0 +1,98 @@
+<br/><br/><br/>
+<app-loading></app-loading>
+<!-- <button (click)='queryGroup()'><i class="fas fa-users"></i> Query Group</button> -->
+
+<p-toast [style]="{marginTop: '80px'}"  ></p-toast>
+<!-- <p-messages [style]="{marginTop: '20px'}" [(value)]="errMsgs" ></p-messages> -->
+
+
+<!-- <p-breadcrumb [model]="breadcrumbitems"></p-breadcrumb> -->
+
+<div style="width: 100%; height: 800px;  border: 1px solid rgb(5,5,5);">
+  <split direction="horizontal">
+    <split-area size="20">
+      <!-- ///////////////////////////// G R O U P    L I S T ////////////////////////////////////// -->
+      <!-- background-image:url('assets/images/background_1920.jpg') -->
+      <div class="list-group">
+        <div *ngFor="let group of groups">
+          <button type="button" class="list-group-item" (click)="openGroup(group)" style="background: #222222;">
+            <span style="color:#FFFFFF"><i class="fas fa-users"></i>
+              {{group.GroupName}}</span></button>
+        </div>
+      </div>
+      <!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
+
+    </split-area>
+    <split-area size="80">
+
+      <div class="content-section implementation">
+        <p-panel>
+          <p-header>
+            <div class="ui-helper-clearfix">
+              <button type="button" class="btn btn-info" (click)="newGroup()"><span><i class="fas fa-plus"></i>
+                  New</span></button>
+              <button type="button" class="btn btn-primary" [disabled]="isDisabled" (click)="saveGroup()"><span><i
+                    class="fas fa-save"></i>
+                  Save</span></button>
+              <button type="button" class="btn btn-danger" [disabled]="isDisabled || selectedGroup?.IsSystem===true" (click)="showDelGroupConfirm()"><span><i
+                    class="fas fa-trash-alt"></i>
+                  Delete</span></button>
+            </div>
+          </p-header>
+          <p-table *ngIf="selectedGroup" #dt [columns]="groupCols" [value]="selectedGroup?.lstGroupUser" [paginator]="true" [rows]="10" [globalFilterFields]="['UserAD']">
+            <ng-template pTemplate="caption">
+              <div class="row">
+                <div class="col-md-8" style="text-align: left">
+                  <input type="hidden" name="someData" [ngModel]="groupID" value="{{groupID}}" />
+                  <label>Group Name:</label>
+                  <input type="text" pInputText size="40" placeholder="Group Name" [disabled]="true" [(ngModel)]="groupName">
+
+                  <span *ngIf="groupID">
+                    <button class="btn btn-default" (click)="addGroupUser()"><i class="fas fa-user-plus"></i>
+                      Add</button>
+                    <!-- <sheetjs (onCompleted)="onCompleted(groupID, $event)"></sheetjs> -->
+                    <button class="btn btn-default" (click)="showUpload()"><i class="fas fa-file-upload"></i>
+                      Upload</button>
+                  </span>
+                   total : {{selectedGroup.lstGroupUser.length}} members
+                </div>
+
+                <div class="col-md-4" style="text-align: right">
+                  <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                  <input type="text" pInputText size="30" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')">
+                </div>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th><B> AD Name </B></th>
+                <th><B> Action </B></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData>
+              <tr>
+                <td class="col-md-10">
+                  {{rowData['UserAD']}}
+                </td>
+                <td class="col-md-2">
+                  <span *ngIf="rowData">
+                    <button class="btn btn-danger" (click)="showConfirm(rowData['UserAD'])"><i class="fas fa-times"></i>
+                      Delete</button>
+                  </span>
+                </td>
+              </tr>
+            </ng-template>
+
+          </p-table>
+          <!-- <p-footer>
+    <span *ngIf="groupID">
+    <button class="btn btn-default" (click)="addGroupUser()"><i class="fas fa-user-plus"></i> Add Member</button>
+    <sheetjs (onCompleted)="onCompleted(groupID, $event)"></sheetjs>
+    </span>
+</p-footer> -->
+        </p-panel>
+      </div>
+
+    </split-area>
+  </split>
+</div>
